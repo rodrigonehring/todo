@@ -270,7 +270,7 @@ arrify@^1.0.0, arrify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
-asap@~2.0.3:
+asap@^2.0.6, asap@~2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
 
@@ -2060,6 +2060,19 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
+disposables@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/disposables/-/disposables-1.0.2.tgz#36c6a674475f55a2d6913567a601444e487b4b6e"
+
+dnd-core@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-2.5.4.tgz#0c70a8dcbb609c0b222e275fcae9fa83e5897397"
+  dependencies:
+    asap "^2.0.6"
+    invariant "^2.0.0"
+    lodash "^4.2.0"
+    redux "^3.7.1"
+
 dns-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/dns-equal/-/dns-equal-1.0.0.tgz#b39e7f1da6eb0a75ba9c17324b34753c47e0654d"
@@ -3238,7 +3251,7 @@ hoek@4.x.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
-hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@^2.1.0, hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 
@@ -3394,6 +3407,12 @@ ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
+immutability-helper@^2.6.5:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/immutability-helper/-/immutability-helper-2.6.5.tgz#94a10f18f1196244b2dea92d46522d2b4dce7b73"
+  dependencies:
+    invariant "^2.2.0"
+
 import-lazy@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
@@ -3471,7 +3490,7 @@ interpret@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
 
-invariant@^2.0.0, invariant@^2.2.2:
+invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.2:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.3.tgz#1a827dfde7dcbd7c323f0ca826be8fa7c5e9d688"
   dependencies:
@@ -4557,10 +4576,6 @@ mem@^1.1.0:
   resolved "https://registry.yarnpkg.com/mem/-/mem-1.1.0.tgz#5edd52b485ca1d900fe64895505399a0dfa45f76"
   dependencies:
     mimic-fn "^1.0.0"
-
-memoize-one@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-3.0.1.tgz#7b599850bb41be8beed305f4eefd963c8cea9a0a"
 
 memory-fs@^0.4.0, memory-fs@~0.4.1:
   version "0.4.1"
@@ -5680,11 +5695,7 @@ querystringify@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
 
-raf-schd@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/raf-schd/-/raf-schd-2.1.0.tgz#64d645723380ec25cc1714e909b953ef1cf254bf"
-
-raf@3.4.0, raf@^3.1.0:
+raf@3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
   dependencies:
@@ -5738,21 +5749,6 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-beautiful-dnd@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/react-beautiful-dnd/-/react-beautiful-dnd-5.0.0.tgz#5200d37c4fc847946f5bf56f2613f2ca9591d405"
-  dependencies:
-    babel-runtime "^6.26.0"
-    invariant "^2.2.2"
-    memoize-one "^3.0.1"
-    prop-types "^15.6.0"
-    raf-schd "^2.1.0"
-    react-motion "^0.5.2"
-    react-redux "^5.0.6"
-    redux "^3.7.2"
-    redux-thunk "^2.2.0"
-    reselect "^3.0.1"
-
 react-dev-utils@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-5.0.0.tgz#425ac7c9c40c2603bc4f7ab8836c1406e96bb473"
@@ -5775,6 +5771,23 @@ react-dev-utils@^5.0.0:
     sockjs-client "1.1.4"
     strip-ansi "3.0.1"
     text-table "0.2.0"
+
+react-dnd-html5-backend@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-2.5.4.tgz#974ad083f67b12d56977a5b171f5ffeb29d78352"
+  dependencies:
+    lodash "^4.2.0"
+
+react-dnd@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/react-dnd/-/react-dnd-2.5.4.tgz#0b6dc5e9d0dfc2909f4f4fe736e5534f3afd1bd9"
+  dependencies:
+    disposables "^1.0.1"
+    dnd-core "^2.5.4"
+    hoist-non-react-statics "^2.1.0"
+    invariant "^2.1.0"
+    lodash "^4.2.0"
+    prop-types "^15.5.10"
 
 react-dom@^16.2.0:
   version "16.2.0"
@@ -5808,14 +5821,6 @@ react-jss@^8.1.0:
     prop-types "^15.6.0"
     theming "^1.3.0"
 
-react-motion@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/react-motion/-/react-motion-0.5.2.tgz#0dd3a69e411316567927917c6626551ba0607316"
-  dependencies:
-    performance-now "^0.2.0"
-    prop-types "^15.5.8"
-    raf "^3.1.0"
-
 react-popper@^0.8.0:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.8.2.tgz#092095ff13933211d3856d9f325511ec3a42f12c"
@@ -5823,7 +5828,7 @@ react-popper@^0.8.0:
     popper.js "^1.12.9"
     prop-types "^15.6.0"
 
-react-redux@^5.0.6, react-redux@^5.0.7:
+react-redux@^5.0.7:
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
   dependencies:
@@ -6007,11 +6012,7 @@ redux-saga@^0.16.0:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"
 
-redux-thunk@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
-
-redux@^3.7.2:
+redux@^3.7.1, redux@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:
@@ -6196,10 +6197,6 @@ require-uncached@^1.0.3:
 requires-port@1.0.x, requires-port@1.x.x, requires-port@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
-
-reselect@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
