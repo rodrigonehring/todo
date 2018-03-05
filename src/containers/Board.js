@@ -1,69 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import update from 'immutability-helper'
-import { DragDropContext } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
-import Column from './Column'
-import Card from './Card'
-import { moveCard } from '../actions'
+import Fab from '../components/Fab'
+import { openDialog, cancelDialog, createTask, deleteTask, finishTask, changeTab } from '../actions'
+import Tabs from '../components/Tabs'
+import List from '../components/List'
+import DialogCreateTask from '../components/DialogCreateTask'
 
 class Board extends Component {
-  moveCard = (dragIndex, hoverIndex) => {
-    console.log('movecard', dragIndex, hoverIndex)
-    // const { cards } = this.state
-    // const dragCard = cards[dragIndex]
+  deleteTask = list => task => this.props.deleteTask({ ...task, list })
 
-    // this.setState(
-    //   update(this.state, {
-    //     cards: {
-    //       $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
-    //     },
-    //   }),
-    // )
+  renderTasks = () => {
+    const { main, finishTask } = this.props
+    return <List list={main.todos} deleteTask={this.deleteTask('todos')} finishTask={finishTask} />
   }
 
-  /**
-   * @param {object} column
-   * @param {card} column
-   */
-  handleDrop = ({ column, card }) => {
-    const from = card.currentColumn
-    const to = column.id
-    this.props.moveCard({ from, to, card: card.card })
-    console.log('handleDrop', column, card)
-  }
-
-  renderCards = column => (id, index) => {
-    return <Card key={id} id={id} index={index} moveCard={this.moveCard} currentColumn={column} />
-  }
-
-  renderColumn = id => {
-    return (
-      <div key={id}>
-        <Column id={id} onDrop={this.handleDrop}>{cards => cards.map(this.renderCards(id))}</Column>
-      </div>
-    )
+  renderCompleted = () => {
+    const { main } = this.props
+    return <List list={main.done} deleteTask={this.deleteTask('done')} done />
   }
 
   render() {
-    const { columns = [] } = this.props
-    console.log('Board', columns)
+    const { createTask, cancelDialog, openDialog, changeTab, main } = this.props
+    const { dialog } = main
+
     return (
       <div>
-        board
-        {columns.map(this.renderColumn)}
+        <Tabs renderTasks={this.renderTasks} renderCompleted={this.renderCompleted} changeTab={changeTab} tabSelected={main.tab} />
+        <DialogCreateTask {...dialog} createTask={createTask} cancelDialog={cancelDialog} />
+        <Fab openDialog={openDialog} />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({ columns: state.main.columns })
+const mapStateToProps = state => ({ main: state.main })
+
 const mapActionsToProps = {
-  moveCard,
+  createTask,
+  openDialog,
+  cancelDialog,
+  deleteTask,
+  finishTask,
+  changeTab,
 }
 
 const withConnect = connect(mapStateToProps, mapActionsToProps)
-const withContextDrag = DragDropContext(HTML5Backend)
 
-export default compose(withConnect, withContextDrag)(Board)
+export default compose(withConnect)(Board)

@@ -1,64 +1,80 @@
 import { combineReducers } from 'redux'
+import entitiesReducer from './entitiesReducer'
 
 const initialState = {
-  columns: ['columnId1', 'columnId2'],
-
-  entities: {
-    card: {
-      cardId1: {
-        id: 'cardId1',
-        name: 'Card 1',
-      },
-      cardId2: {
-        id: 'cardId2',
-        name: 'Card 2',
-      },
-      cardId3: {
-        id: 'cardId3',
-        name: 'Card 3',
-      },
-    },
-    column: {
-      columnId1: {
-        id: 'columnId1',
-        name: 'column 1',
-        cards: ['cardId1', 'cardId2'],
-      },
-      columnId2: {
-        id: 'columnId2',
-        name: 'column 2',
-        cards: ['cardId3'],
-      },
-    },
+  done: ['taskId1'],
+  todos: ['taskId2', 'taskId3'],
+  // tab index
+  tab: 0,
+  dialog: {
+    open: false,
   },
-}
-
-function updateEntitie(currentState, id, cb) {
-  return {
-    ...currentState,
-    [id]: cb(currentState[id]),
-  }
 }
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'board/moveCard': {
-      const { from, to, card } = payload
+    case 'board/changeTab': {
       return {
         ...state,
-        entities: {
-          ...state.entities,
-          column: updateEntitie(state.entities.column, from, q => ({})),
+        tab: payload.value,
+      }
+    }
+
+    case 'board/createTask': {
+      return {
+        ...state,
+        todos: state.todos.concat(payload.id),
+        tab: 0,
+        dialog: {
+          ...state.dialog,
+          open: false,
         },
       }
     }
-      
-  
+
+    case 'board/finishTask': {
+      return {
+        ...state,
+        todos: state.todos.filter(id => id !== payload.id),
+        done: state.done.concat(payload.id),
+      }
+    }
+
+    case 'board/deleteTask': {
+      return {
+        ...state,
+        [payload.list]: state[payload.list].filter(id => id !== payload.id),
+      }
+    }
+
+    case 'board/cancelDialog': {
+      return {
+        ...state,
+        dialog: {
+          ...state.dialog,
+          open: false,
+        },
+      }
+    }
+
+    case 'board/openDialog': {
+      return {
+        ...state,
+        dialog: {
+          ...state.dialog,
+          open: true,
+        },
+      }
+    }
+
     default:
       return state
   }
 }
 
+
+
 export default combineReducers({
   main: reducer,
+  entities: entitiesReducer,
 })
